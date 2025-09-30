@@ -1,6 +1,5 @@
 # config.yaml
 paths:
-  LINK_TO_DTI_DATASET: "D:/StudyMaterials/ThesisMaterials/DataSets/SCOPEData/SCOPE_Total_v1.parquet"
   LINK_TO_RXCUI_DATASET: "../Data/integrated_onsides_scope_basic.parquet"
-  LINK_TO_DRUG_DATASET: "D:/StudyMaterials/ThesisMaterials/DataSets/Merged/Merging/merged_id.parquet"
+  LINK_TO_DRUG_DATASET: "../Data/merged_id.parquet"
   LINK_TO_ONSIDE_DATASET: "../Data/final_rxnorm_meddra.csv"
