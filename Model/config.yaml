@@ -1,5 +1,5 @@
 # config.yaml
 
 paths:
-  DTI_DATASET: "../Data/scope_onside_common_v2.parquet"
-  ADR_DATASET: "../Data/rxnorm_ingredient_to_meddra.parquet"
+  DTI_DATASET: "../Data/scope_onside_common_v3.parquet"
+  ADR_DATASET: "../Data/final_rxnorm_meddra_v2.parquet"
