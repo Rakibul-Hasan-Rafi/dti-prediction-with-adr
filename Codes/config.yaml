@@ -3,3 +3,4 @@ paths:
   LINK_TO_RXCUI_DATASET: "../Data/Helper_Datasets/integrated_onsides_scope_basic.parquet"
   LINK_TO_DRUG_DATASET: "../Data/Helper_Datasets/merged_id.parquet"
   LINK_TO_ONSIDE_DATASET: "../Data/final_rxnorm_meddra.csv"
+  
