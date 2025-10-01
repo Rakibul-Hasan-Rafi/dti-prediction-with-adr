@@ -1,4 +1,3 @@
-Here’s a plain-English “map” of everything the TF-IDF builder wrote, what each file means, and how they fit together. Keep this as your project README for ADR-TF-IDF.
 
 ---
 
