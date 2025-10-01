@@ -5,7 +5,7 @@ Here’s a plain-English “map” of everything the TF-IDF builder wrote, what 
 # What lives where
 
 ```
-F:\Thesis Korbi na\dti-prediction-with-adr\Data with splits\
+\dti-prediction-with-adr\Data\TFIDF_ADR_vectors
 ├─ idf_table.parquet
 ├─ drug_index.parquet
 ├─ adr_index.parquet
