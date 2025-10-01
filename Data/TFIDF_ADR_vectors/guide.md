@@ -41,9 +41,7 @@ If you didn’t pass splits, you’ll just have the four “root” files plus `
 * `meddra_id` (int64) — the ADR ID (PT/LLT).
 * `df` (int32) — “document frequency”: how many **train** drugs had this ADR (presence).
 * `idf` (float32) — the inverse-document-frequency weight the model used:
-  [
-  \text{idf} = \log\frac{1 + N_{\text{train}}}{1 + df} + 1
-  ]
+![tf-idf formula](../images/tf-idf.png)
 
 **Why it matters:**
 
