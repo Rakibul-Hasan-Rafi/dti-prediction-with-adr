@@ -204,6 +204,62 @@ If you didn’t pass splits, you’ll just have the four “root” files plus `
 
 ---
 
+# Typical “load & use” snippets
+
+### Read wide features and join with a DTI split
+
+```python
+import pandas as pd
+
+# Load wide TF-IDF
+tfidf_wide_train = pd.read_parquet(r"...\train\tfidf_wide.parquet")  # rxcui + many meddra_* columns
+
+# Example: join into your DTI training rows (which also have an rxcui column)
+dti_train = dti_df[dti_df["rxcui"].isin(tfidf_wide_train["rxcui"])]
+dti_train = dti_train.merge(tfidf_wide_train, on="rxcui", how="left").fillna(0.0)
+
+# Now dti_train has columns for model inputs:
+#  - your original features (SMILES, sequence, etc.)
+#  - ADR TF-IDF columns (meddra_*)
+#  - labels (DTI label)
+```
+
+### Build binary ADR targets from wide (TF-IDF > 0)
+
+```python
+tfidf_wide_train_binary = tfidf_wide_train.set_index("rxcui")
+tfidf_wide_train_binary[:] = (tfidf_wide_train_binary.values > 0).astype("float32")
+```
+
+### Read long format and reconstruct a sparse matrix (SciPy CSR)
+
+```python
+import pandas as pd
+from scipy import sparse as sp
+import numpy as np
+
+df_long = pd.read_parquet(r"...\train\tfidf_long.parquet")
+drugs = pd.read_parquet(r"...\drug_index.parquet")
+adrs  = pd.read_parquet(r"...\adr_index.parquet")
+
+# Keep only ADRs that survived filtering (present in idf_table)
+idf_table = pd.read_parquet(r"...\idf_table.parquet")
+kept_set = set(idf_table["meddra_id"].astype(np.int64))
+
+# Map keys to integer indices
+rxcui_to_row = dict(zip(drugs["rxcui"], drugs["row_id"]))
+meddra_to_col = {int(m): i for i, m in enumerate(idf_table["meddra_id"].astype(np.int64))}
+
+rows = df_long["rxcui"].map(rxcui_to_row).to_numpy()
+cols = df_long["meddra_id"].map(meddra_to_col).to_numpy()
+data = df_long["tfidf"].to_numpy(dtype="float32")
+
+n_rows = drugs["row_id"].max() + 1
+n_cols = len(idf_table)
+X = sp.coo_matrix((data, (rows, cols)), shape=(n_rows, n_cols), dtype="float32").tocsr()
+```
+---
+
 # FAQ-style gotchas (in simple terms)
 
 * **“Why are val/test columns the same as train?”**
