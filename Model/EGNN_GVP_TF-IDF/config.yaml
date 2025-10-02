@@ -1,0 +1,56 @@
+# config.yaml
+data:
+  # relative to your notebook / repo root
+  dti_path: "../../Data/scope_onside_common_v3.parquet"
+
+  # IMPORTANT: this is the TF-IDF ROOT DIRECTORY (contains idf_table.parquet and train/val/test folders)
+  adr_tfidf_root: "../../Data/TFIDF_ADR_vectors"
+
+  pdb_dir: "../../AlphaFoldData"
+  pdb_pattern: "{uniprot_id}.pdb"   # supports {uniprot_id} placeholder
+
+  splits:
+    # if you already have split lists (one RXCUI per line), put paths here; else leave null to infer from TF-IDF folders
+    train_rxcui_path: null
+    val_rxcui_path: null
+    test_rxcui_path: null
+
+  missing_handling:
+    build_drug_3d_from_smiles: true
+    skip_pairs_with_missing_pdb: true
+    max_atoms: 100
+    max_residues: 1200
+
+model:
+  drug_encoder: "egnn"               # or "unimol_ligand"
+  protein_encoder: "gvp"             # or "gearnet" / "unimol_pocket"
+
+  dims:
+    drug_hidden: 320
+    prot_hidden: 256
+    z_dim: 512
+
+  heads:
+    dti_mlp: [1024, 256, 1]
+    adr_mlp: [512, 512, "<num_adrs>"]  # will be filled from idf_table at runtime
+
+  plddt_weight_pooling: true
+
+training:
+  adr_target: "binary"               # or "binary+cosine"
+  lambda_adr: 0.5
+  lambda_cosine: 0.1
+  batch_size: 48
+  epochs: 80
+  lr_encoders: 0.0002
+  lr_heads: 0.001
+  weight_decay: 0.0001
+  early_stop_metric: "dti_pr_auc"
+  amp: true
+  dti_pos_weight: null               # e.g., 2.0 if positives are rare
+  adr_gate_threshold: 0.6
+
+logging:
+  out_dir: "runs"
+  tensorboard: true
+  wandb: false
