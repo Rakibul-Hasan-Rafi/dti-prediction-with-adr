@@ -1,0 +1,8 @@
+dataPath:
+  dti_data: "../../Data/scope_onside_common_v3.parquet"
+  adr_data: "../../Data/final_rxnorm_meddra_v2.parquet"
+  prot_3d_dir: "../../AlphaFoldData"
+
+cachePath:
+  prot_model: "./proteinCache"
+  drug_model: "./drugModel"
