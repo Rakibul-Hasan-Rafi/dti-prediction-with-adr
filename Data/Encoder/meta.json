@@ -1,9 +1,0 @@
-{
-  "method": "TruncatedSVD+Normalizer",
-  "k": 256,
-  "num_drugs": 1028,
-  "num_adrs": 4817,
-  "adr_axis_dtype": "int",
-  "drug_axis_dtype": "str",
-  "explained_variance_ratio_sum": 0.8523821830749512
-}
