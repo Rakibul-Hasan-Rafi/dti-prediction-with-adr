@@ -1,0 +1,49 @@
+# EGNN encoder configuration (Part 1)
+project:
+  name: dti-prediction-with-adr
+  seed: 1337
+
+paths:
+  data_root: "../Data"
+  main_parquet: "../Data/scope_onside_common_v3.parquet"
+  # where to drop the final embeddings parquet
+  out_embeddings_parquet: "../Data/EGNN_drug_embeddings.parquet"
+  # cache for prebuilt graphs & conformers
+  graph_cache_dir: "../Data/graph_cache_egnn_v1"
+
+hardware:
+  device: "cuda:0"           # matches your env: RTX 5070 Ti
+  amp_dtype: "float16"       # per your env
+  tf32: true                 # per your env
+
+egnn_encoder:
+  embed_dim: 256             # final per-molecule vector size
+  hidden_dim: 256
+  n_layers: 6
+  coord_updates: true        # use EGNN variant that updates coordinates
+  pooling: "mean"            # "mean" | "sum" | "attention"
+  l2_normalize: true         # normalize final vectors
+  max_atoms: 1000             # cap (drugs should typically fit)
+  max_conformers: 1          # we’ll pick one (keep fixed for reproducibility)
+
+featurization:
+  atom_features:
+    - "atomic_num_onehot"    # Z one-hot (reasonable cap ~ 1..30 for small molecules)
+    - "formal_charge"
+    - "is_aromatic"
+    - "hybridization"
+    - "in_ring"
+    - "degree"
+  bond_features:
+    - "bond_type_onehot"
+    - "is_conjugated"
+    - "in_ring"
+
+io:
+  # parquet write options
+  parquet_row_group_size: 4096
+  parquet_engine: "pyarrow"
+
+logging:
+  enable_tqdm: true
+  echo_dataset_head: true

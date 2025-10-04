@@ -1,0 +1,18 @@
+2025-10-04 16:28:08,096 - root - INFO - Initialized DTI_ADR_Trainer with device: cuda
+2025-10-04 16:28:08,718 - root - INFO - Data module initialized
+2025-10-04 16:28:10,024 - root - INFO - Model initialized with 7,539,372 parameters
+2025-10-04 16:28:10,025 - root - INFO - Optimizer: adamw
+2025-10-04 16:28:10,025 - root - INFO - Scheduler: cosine
+2025-10-04 16:28:10,030 - root - INFO - Starting training for 2 epochs
+2025-10-04 16:28:39,603 - root - ERROR - Training failed with error: 'float' object has no attribute 'item'
+2025-10-04 16:32:09,446 - root - INFO - Initialized DTI_ADR_Trainer with device: cuda
+2025-10-04 16:32:10,316 - root - INFO - Initialized EncodingPrecomputer with device: cuda
+2025-10-04 16:32:10,316 - root - INFO - Precomputing encodings for train split...
+2025-10-04 16:33:16,390 - root - INFO - Processing batch 0/5578
+2025-10-04 16:36:26,155 - root - INFO - Processing batch 100/5578
+2025-10-04 16:40:06,409 - root - INFO - Initialized DTI_ADR_Trainer with device: cuda
+2025-10-04 16:40:07,036 - root - INFO - Data module initialized
+2025-10-04 16:40:08,334 - root - INFO - Model initialized with 7,539,372 parameters
+2025-10-04 16:40:08,334 - root - INFO - Optimizer: adamw
+2025-10-04 16:40:08,335 - root - INFO - Scheduler: cosine
+2025-10-04 16:40:08,340 - root - INFO - Starting training for 2 epochs
