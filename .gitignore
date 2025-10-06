@@ -3,5 +3,3 @@ model_radito/best_optimized_model.pth
 model_radito/best_multimodal_model.pth
 model_radito/best_advanced_model.pth
 Data/GVP-GNN_protein_graphs
-Data/gvp_meta
-Data/graph_cache_gvp_v1
