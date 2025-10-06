@@ -7,9 +7,9 @@ paths:
   data_root: "../Data"
   main_parquet: "../Data/scope_onside_common_v3.parquet"
   # where to drop the final embeddings parquet
-  out_embeddings_parquet: "../Data/EGNN_drug_embeddings.parquet"
+  out_embeddings_parquet: "../Data/EGNN_drug_embeddings_v2.parquet"
   # cache for prebuilt graphs & conformers
-  graph_cache_dir: "../Data/graph_cache_egnn_v1"
+  graph_cache_dir: "../Data/graph_cache_egnn_v2"
 
 hardware:
   device: "cuda:0"           # matches your env: RTX 5070 Ti

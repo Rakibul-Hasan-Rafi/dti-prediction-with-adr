@@ -1,0 +1,62 @@
+# =========================
+# GVP-GNN Protein Encoder (Tier B) - Config
+# =========================
+paths:
+  data_root: "../Data"
+  pdb_dir: "../AlphaFoldData"      # put your AlphaFold PDBs here: {uniprot_id}.pdb
+  main_parquet: "../Data/scope_onside_common_v3.parquet"
+  protein_embeddings_out: "../Data/protein_embeddings.parquet"
+  graph_cache_dir: "../Data/graph_cache_gvp_v1"
+  meta_dir: "../Data/gvp_meta"
+
+io:
+  write_graph_npz: true
+  write_residue_embeddings: false       # set true later if you want [L, D_res] per protein
+
+encoder:
+  # --- Graph construction (Tier B) ---
+  knn_k: 36
+  radius_cutoff_A: 12.0
+  add_sequence_edges: true
+  bidirectional_edges: true
+
+  # --- Node features ---
+  use_local_frame: true                 # per-residue (x,y,z) basis from N-CA-C
+  use_backbone_dirs: true               # N->CA and CA->C unit vectors
+  use_torsions: true                    # phi/psi/omega as sin/cos
+  use_positional_enc: true              # residue index / length (sin/cos)
+  use_pLDDT: true                       # from B-factor field in AF2 PDB
+  use_basic_chemistry: true             # hydrophobicity, charge, polarity
+
+  # --- Edge features ---
+  rbf_bins: 32                          # RBF expansion for Cα–Cα distance
+  rbf_dmin: 0.0
+  rbf_dmax: 20.0
+  use_seq_sep_buckets: true
+  add_contact_flag: true                # distance < 8Å -> 1
+
+model:
+  num_layers: 10
+  node_scalar_dim: 320
+  node_vector_dim: 20
+  edge_scalar_dim: 96
+  edge_vector_dim: 10
+  scalar_dropout: 0.10
+  residue_embed_dim: 256                # internal per-residue hidden dim (pre-pooling)
+  global_embed_dim: 1024                # final pooled embedding size
+
+pooling:
+  use_attention_pool: true
+  plddt_gate_attention: true
+  concat_mean_pool: true
+
+performance:
+  amp_dtype: "float16"                  # per your env
+  tf32: true
+  cudnn_benchmark: true
+  torch_compile: true
+
+repro:
+  seed: 1337
+  cache_version: 1
+  encoder_version: "gvp_tierB_v1"
