@@ -1,5 +1,4 @@
 Codes/scope_subset.parquet
-Data/Main_Datasets/
 model_radito/best_optimized_model.pth
 model_radito/best_multimodal_model.pth
 model_radito/best_advanced_model.pth
