@@ -1,1 +1,0 @@
-used Google colab, so will need to change the input output directory path and some other necessary changes
