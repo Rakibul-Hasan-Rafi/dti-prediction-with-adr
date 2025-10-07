@@ -1,0 +1,82 @@
+{
+  "system": {
+    "timestamp": "2025-10-06 15:34:08",
+    "os": {
+      "system": "Windows",
+      "release": "11",
+      "version": "10.0.26100",
+      "platform": "Windows-11-10.0.26100-SP0",
+      "machine": "AMD64"
+    },
+    "python": {
+      "version": "3.12.11 | packaged by conda-forge | (main, Jun  4 2025, 14:29:09) [MSC v.1943 64 bit (AMD64)]",
+      "executable": "f:\\AI-Ml_conda_env\\research\\python.exe"
+    },
+    "env_manager": {
+      "conda_env": "F:\\AI-Ml_conda_env\\research",
+      "conda_prefix": "F:\\AI-Ml_conda_env\\research",
+      "venv": null
+    }
+  },
+  "resources": {
+    "cpu": {
+      "physical_cores": 12,
+      "logical_cores": 20,
+      "frequency_mhz": 2100.0,
+      "name": "Intel64 Family 6 Model 151 Stepping 2, GenuineIntel"
+    },
+    "ram": {
+      "total_gib": 31.76,
+      "available_gib": 15.95
+    },
+    "disk_C": {
+      "total_gib": 399.13,
+      "used_gib": 351.09,
+      "free_gib": 48.05,
+      "percent_used": 88.0
+    }
+  },
+  "nvidia_cuda": {
+    "nvidia_smi_available": true,
+    "driver_version": "576.88",
+    "gpus": [
+      {
+        "name": "NVIDIA GeForce RTX 5070 Ti",
+        "memory_gib": null,
+        "pcie_width_max": "16"
+      }
+    ],
+    "nvcc_available": false
+  },
+  "pytorch": {
+    "installed": true,
+    "version": "2.7.0+cu128",
+    "cuda_available": true,
+    "cuda_device_count": 1,
+    "gpus": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 5070 Ti",
+        "compute_capability": "12.0",
+        "total_mem_gib": 15.92
+      }
+    ],
+    "torch_cuda_version": "12.8",
+    "cudnn_available": true,
+    "cudnn_version": 90701
+  },
+  "tensorflow": {
+    "installed": false
+  },
+  "packages": {
+    "numpy": "2.3.3",
+    "pandas": "2.3.3",
+    "scikit-learn": null,
+    "xgboost": null,
+    "lightgbm": null,
+    "torch": "2.7.0+cu128",
+    "torchvision": null,
+    "torchaudio": "2.7.0+cu128",
+    "tensorflow": null
+  }
+}
