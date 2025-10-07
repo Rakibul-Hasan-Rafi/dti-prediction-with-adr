@@ -26,10 +26,10 @@ model:
   hidden_ratio: 2
   p_drop: 0.10
   dti_head: "cosine"      # "cosine" | "bilinear"
-  drug_encoder: "chemberta"   # "chemberta" | "smiles2vec" | "egnn"
+  drug_encoder: "egnn"   # "chemberta" | "smiles2vec" | "egnn"
   protein_encoder: "gvp"      # "esm" | "gvp"
   contrastive:
-    use_dp: false
+    use_dp: true
     use_da: false
     tau: 0.07
   adr_scoring:
@@ -53,8 +53,8 @@ train:
   clip_grad_norm: 1.0
   loss_weights:
     lambda_dti: 1.0
-    lambda_adr: 0.0
-    lambda_con: 0.0
+    lambda_adr: 0.5
+    lambda_con: 0.2
   imbalance:
     balanced_batches: true
 

@@ -1,0 +1,88 @@
+{
+  "run": {
+    "name": "dti-adr_v1_chemberta+esm_cosine",
+    "seed": 1337,
+    "output_dir": "./runs/dti_adr_v1"
+  },
+  "data": {
+    "K": 4048,
+    "dti_pairs_path": "scope_onside_common_v3.parquet",
+    "adr_root": "1. Adr_embeddings",
+    "adr_files": {
+      "idf_table": "idf_table.parquet",
+      "adr_index": "adr_index.parquet",
+      "drug_index": "drug_index.parquet",
+      "global_stats": "global_stats.json"
+    },
+    "drug_embeddings": {
+      "chemberta": "2. Drug_embeddings/smiles_embeddings_chemberta.parquet",
+      "smiles2vec": "2. Drug_embeddings/smiles_embeddings_smiles2vec.parquet",
+      "egnn": "2. Drug_embeddings/EGNN_drug_embeddings_v2.parquet"
+    },
+    "protein_embeddings": {
+      "esm": "3. Protein_embeddings/ESM_embeddings_(t33_650m model).parquet",
+      "gvp": "3. Protein_embeddings/GVP-GNN_protein_embeddings.parquet"
+    }
+  },
+  "model": {
+    "shared_dim": 512,
+    "hidden_ratio": 2,
+    "p_drop": 0.1,
+    "dti_head": "cosine",
+    "drug_encoder": "egnn",
+    "protein_encoder": "gvp",
+    "contrastive": {
+      "use_dp": true,
+      "use_da": false,
+      "tau": 0.07
+    },
+    "adr_scoring": {
+      "alpha": 1.0,
+      "beta": 1.0,
+      "gamma": 0.5
+    }
+  },
+  "train": {
+    "batch_size": 256,
+    "epochs": 40,
+    "early_stop_patience": 7,
+    "optimizer": {
+      "lr": 0.0003,
+      "weight_decay": 0.0001
+    },
+    "scheduler": {
+      "use_cosine": true,
+      "warmup_pct": 0.1
+    },
+    "amp": {
+      "enabled": true,
+      "precision": "bf16"
+    },
+    "clip_grad_norm": 1.0,
+    "loss_weights": {
+      "lambda_dti": 1.0,
+      "lambda_adr": 0.5,
+      "lambda_con": 0.2
+    },
+    "imbalance": {
+      "balanced_batches": true
+    }
+  },
+  "eval": {
+    "metrics": {
+      "dti_primary": "pr_auc",
+      "dti_threshold": "val_max_f1",
+      "adr_k": [
+        5,
+        10
+      ]
+    },
+    "save_best_by": "dti_pr_auc"
+  },
+  "artifacts": {
+    "save_prototypes": true,
+    "prototypes_path": "./runs/dti_adr_v1/prototypes_C.npy",
+    "save_threshold": true,
+    "save_config_copy": true
+  }
+}
