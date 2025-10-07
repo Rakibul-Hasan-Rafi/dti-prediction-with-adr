@@ -1,0 +1,64 @@
+Protein "ESM" :
+
+drug_encoder: "smiles2vec"   
+DTI PREDICTION SCORES:
+Accuracy: 0.8415
+F1-Score: 0.6654
+ROC-AUC:  0.8506
+
+
+drug_encoder: "egnn"
+DTI PREDICTION SCORES:
+Accuracy: 0.8315
+F1-Score: 0.6805
+ROC-AUC:  0.8426
+
+
+drug_encoder: "chemberta"    
+DTI PREDICTION SCORES:
+Accuracy: 0.8056
+F1-Score: 0.6564
+ROC-AUC:  0.8532
+
+Protein "GVP-GNN":
+
+drug_encoder: "chemberta" 
+DTI PREDICTION SCORES:
+Accuracy: 0.5858
+F1-Score: 0.4904
+ROC-AUC:  0.7685
+
+drug_encoder: "smiles2vec"
+DTI PREDICTION SCORES:
+Accuracy: 0.7521
+F1-Score: 0.5431
+ROC-AUC:  0.7482
+
+drug_encoder: "egnn"
+DTI PREDICTION SCORES:
+Accuracy: 0.8036
+F1-Score: 0.5795
+ROC-AUC:  0.7983
+
+
+Fusion:
+
+"best_val_accuracy": 0.8530032623296872 ---- (esm + gvp, smiles2vec + egnn)
+🎯 TEST RESULTS:
+==================================================
+Drug-Target Interaction (DTI):
+  🎯 Accuracy:  0.8479 (84.8%)
+  📈 AUC-ROC:   0.9141
+  🎛️  Precision: 0.7792
+  🔍 Recall:    0.7989
+  ⚖️  F1-Score:  0.7889
+
+"best_val_accuracy": 0.8637497601228171 ---- (esm + gvp, chemberta + egnn)
+🎯 TEST RESULTS:
+==================================================
+Drug-Target Interaction (DTI):
+  🎯 Accuracy:  0.8576 (85.8%)
+  📈 AUC-ROC:   0.9285
+  🎛️  Precision: 0.8778
+  🔍 Recall:    0.6970
+  ⚖️  F1-Score:  0.7770
