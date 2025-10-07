@@ -1,0 +1,36 @@
+📦Model_v1
+ ┣ 📂1. Adr_embeddings
+ ┃ ┣ 📂test
+ ┃ ┃ ┣ 📜preview_top_tfidf.parquet
+ ┃ ┃ ┣ 📜stats.json
+ ┃ ┃ ┣ 📜tfidf_long.parquet
+ ┃ ┃ ┗ 📜tfidf_wide.parquet
+ ┃ ┣ 📂train
+ ┃ ┃ ┣ 📜preview_top_tfidf.parquet
+ ┃ ┃ ┣ 📜stats.json
+ ┃ ┃ ┣ 📜tfidf_long.parquet
+ ┃ ┃ ┗ 📜tfidf_wide.parquet
+ ┃ ┣ 📂val
+ ┃ ┃ ┣ 📜preview_top_tfidf.parquet
+ ┃ ┃ ┣ 📜stats.json
+ ┃ ┃ ┣ 📜tfidf_long.parquet
+ ┃ ┃ ┗ 📜tfidf_wide.parquet
+ ┃ ┣ 📜adr_index.parquet
+ ┃ ┣ 📜drug_index.parquet
+ ┃ ┣ 📜global_stats.json
+ ┃ ┣ 📜guide.md
+ ┃ ┗ 📜idf_table.parquet
+ ┣ 📂2. Drug_embeddings
+ ┃ ┣ 📜DatasetInfo.ipynb
+ ┃ ┣ 📜EGNN_drug_embeddings.parquet
+ ┃ ┣ 📜EGNN_drug_embeddings_v2.parquet
+ ┃ ┣ 📜smiles_embeddings_chemberta.parquet
+ ┃ ┗ 📜smiles_embeddings_smiles2vec.parquet
+ ┣ 📂3. Protein_enbeddings
+ ┃ ┣ 📜DatasetInfo.ipynb
+ ┃ ┣ 📜ESM_embeddings_(t33_650m model).parquet
+ ┃ ┣ 📜GVP-GNN_protein_embeddings.parquet
+ ┣ 📜all_datasets_embeddings_info.txt
+ ┣ 📜dir_tree.txt
+ ┣ 📜model_architecture.md
+ ┗ 📜scope_onside_common_v3.parquet
